@@ -2,11 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BiTrend.Views.MainPage"
-             Title="MainPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="MainPage"
+             >
+    <Grid
+        RowDefinitions="60, Auto"
+        Margin="8">
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="*, Auto">
+            <HorizontalStackLayout
+                Grid.Column="0"
+                VerticalOptions="Center">
+                <Label
+                    Text="BiTrend"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="End">
+                <Image
+                    Source="profile_icon.png"
+                    HeightRequest="30"
+                    WidthRequest="30"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
