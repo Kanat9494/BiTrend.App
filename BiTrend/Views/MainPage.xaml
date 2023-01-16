@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BiTrend.Views.MainPage"
-             Title="MainPage"
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BiTrend.Views.MainPage"
+    xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+    xmlns:models="clr-namespace:BiTrend.Models"
+    Title="MainPage"
              >
     <Grid
         Margin="8">
@@ -38,12 +41,40 @@
             Grid.Row="1"
             BackgroundColor="{StaticResource Gray100}">
             <SearchBar
-                Placeholder="Введите для поиска"/>
+                Placeholder="Введите для поиска"
+                VerticalOptions="Fill"/>
         </Frame>
 
         <StackLayout
-            Orientation="Horizontal">
-            
+            Orientation="Horizontal"
+            Grid.Row="2">
+            <ActivityIndicator 
+                IsVisible="{Binding IsLoadingCategories}"
+                IsRunning="{Binding IsLoadingCategories}"
+                Color="{StaticResource Green50}"/>
+            <dxcv:DXCollectionView
+                ItemsSource="{Binding Categories}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Fill"
+                Orientation="Horizontal"
+                IsScrollBarVisible="False">
+                <dxcv:DXCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            x:DataType="models:Category"
+                            Stroke="LightGray"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 10"
+                            Margin="5, 0, 5, 0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource Gray100}">
+                            <Label
+                                Text="{Binding CategoryName}"
+                                Padding="10"/>
+                        </Border>
+                    </DataTemplate>
+                </dxcv:DXCollectionView.ItemTemplate>
+            </dxcv:DXCollectionView>
         </StackLayout>
     </Grid>
 </ContentPage>
