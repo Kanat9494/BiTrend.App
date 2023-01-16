@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\bell_icon.png" />
 	  <None Remove="Resources\Images\cart_icon.png" />
 	  <None Remove="Resources\Images\chat_icon.png" />
 	  <None Remove="Resources\Images\home_icon.png" />

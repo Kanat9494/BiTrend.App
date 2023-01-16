@@ -5,26 +5,45 @@
              Title="MainPage"
              >
     <Grid
-        RowDefinitions="60, Auto"
         Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid
             Grid.Row="0"
             ColumnDefinitions="*, Auto">
-            <HorizontalStackLayout
+            <StackLayout
                 Grid.Column="0"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand">
                 <Label
-                    Text="BiTrend"/>
-            </HorizontalStackLayout>
+                    Text="BiTrend"
+                    FontSize="24"
+                    FontAttributes="Bold,Italic" 
+                    HorizontalOptions="Start"/>
 
-            <HorizontalStackLayout
-                Grid.Column="1"
-                HorizontalOptions="End">
                 <Image
-                    Source="profile_icon.png"
-                    HeightRequest="30"
-                    WidthRequest="30"/>
-            </HorizontalStackLayout>
+                    Source="bell_icon.png"
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
         </Grid>
+
+        <Frame
+            Grid.Row="1"
+            BackgroundColor="{StaticResource Gray100}">
+            <SearchBar
+                Placeholder="Введите для поиска"/>
+        </Frame>
+
+        <StackLayout
+            Orientation="Horizontal">
+            
+        </StackLayout>
     </Grid>
 </ContentPage>
