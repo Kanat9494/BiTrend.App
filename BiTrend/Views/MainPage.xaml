@@ -13,8 +13,10 @@
             <RowDefinition Height="65"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <Grid
             Grid.Row="0"
             ColumnDefinitions="*, Auto">
@@ -22,18 +24,21 @@
                 Grid.Column="0"
                 VerticalOptions="Center"
                 Orientation="Horizontal"
-                HorizontalOptions="FillAndExpand">
+                HorizontalOptions="FillAndExpand"
+                >
                 <Label
-                    Text="BiTrend"
-                    FontSize="24"
-                    FontAttributes="Bold,Italic" 
-                    HorizontalOptions="Start"/>
+                Text="BiTrend  "
+                FontSize="24"
+                FontAttributes="Bold,Italic" 
+                HorizontalOptions="Start"
+                />
 
                 <Image
-                    Source="bell_icon.png"
-                    HeightRequest="25"
-                    WidthRequest="25"
-                    HorizontalOptions="EndAndExpand"/>
+                Source="bell_icon.png"
+                HeightRequest="25"
+                WidthRequest="25"
+                HorizontalOptions="EndAndExpand"
+                />
             </StackLayout>
         </Grid>
 
@@ -41,17 +46,13 @@
             Grid.Row="1"
             BackgroundColor="{StaticResource Gray100}">
             <SearchBar
-                Placeholder="Введите для поиска"
-                VerticalOptions="Fill"/>
+            Placeholder="Введите для поиска"
+            VerticalOptions="Fill"/>
         </Frame>
 
         <StackLayout
             Orientation="Horizontal"
             Grid.Row="2">
-            <ActivityIndicator 
-                IsVisible="{Binding IsLoadingCategories}"
-                IsRunning="{Binding IsLoadingCategories}"
-                Color="{StaticResource Green50}"/>
             <dxcv:DXCollectionView
                 ItemsSource="{Binding Categories}"
                 HorizontalOptions="FillAndExpand"
@@ -75,6 +76,27 @@
                     </DataTemplate>
                 </dxcv:DXCollectionView.ItemTemplate>
             </dxcv:DXCollectionView>
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="3"
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand"
+            Margin="5">
+            <Label
+                Text="Самые популярные товары:"
+                FontSize="14"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"  
+                />
+
+            <Label
+                Text="Все"
+                FontSize="14"
+                VerticalOptions="Center"
+                HorizontalOptions="EndAndExpand"
+                Margin="5"
+                />
         </StackLayout>
     </Grid>
 </ContentPage>

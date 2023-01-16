@@ -14,10 +14,10 @@ public partial class MainPage : ContentPage
 
     MainViewModel ViewModel { get; }
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
+    //protected override void OnAppearing()
+    //{
+    //    base.OnAppearing();
 
-        ViewModel.OnAppearing();
-    }
+    //    ViewModel.OnAppearing();
+    //}
 }

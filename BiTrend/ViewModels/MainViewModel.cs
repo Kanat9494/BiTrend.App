@@ -8,20 +8,25 @@ internal class MainViewModel : INotifyPropertyChanged
 
     public MainViewModel()
     {
+        IsLoading = true;
         Categories = new ObservableCollection<Category>();
-        //IsLoadingCategories = true;
 
-        //Task.Run(async () =>
-        //{
-        //    await InitializeCategories();
-        //}).GetAwaiter().OnCompleted(() =>
-        //{
-        //    IsLoadingCategories = false;
-        //});
+        LoadContent();
+    }
+
+    private void LoadContent()
+    {
+        Task.Run(async () =>
+        {
+            await InitializeCategories();
+        }).GetAwaiter().OnCompleted(() =>
+        {
+            IsLoading = false;
+        });
     }
 
     private ObservableCollection<Category> _categories;
-    private bool _isLoadingCategories;
+    private bool _isLoading;
 
     public ObservableCollection<Category> Categories
     {
@@ -33,12 +38,12 @@ internal class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    public bool IsLoadingCategories
+    public bool IsLoading
     {
-        get => _isLoadingCategories;
+        get => _isLoading;
         set
         {
-            _isLoadingCategories = value;
+            _isLoading = value;
             OnPropertyChanged();
         }
     }
@@ -69,14 +74,12 @@ internal class MainViewModel : INotifyPropertyChanged
 
     public void OnAppearing()
     {
-        IsLoadingCategories = true;
-
         Task.Run(async () =>
         {
             await InitializeCategories();
         }).GetAwaiter().OnCompleted(() =>
         {
-            IsLoadingCategories = false;
+            IsLoading = false;
         });
     }
 

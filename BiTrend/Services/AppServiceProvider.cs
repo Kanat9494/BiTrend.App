@@ -22,21 +22,20 @@ internal class AppServiceProvider
 
     public async Task<IEnumerable<Category>> GetCategories()
     {
-        await Task.Delay(3000);
-            try
-            {
-                var response = await httpClient.GetStringAsync(httpClient.BaseAddress + "api/Category/GetCategories");
-                var categories = JsonConvert.DeserializeObject<IEnumerable<Category>>(response);
+        try
+        {
+            var response = await httpClient.GetStringAsync(httpClient.BaseAddress + "api/Category/GetCategories");
+            var categories = JsonConvert.DeserializeObject<IEnumerable<Category>>(response);
 
-                return categories;
-            }
-            catch (Exception ex)
-            {
-                var result = new ResponseHttpMessage();
-                result.StatusCode = 500;
-                result.Message = ex.Message;
+            return categories;
+        }
+        catch (Exception ex)
+        {
+            var result = new ResponseHttpMessage();
+            result.StatusCode = 500;
+            result.Message = ex.Message;
 
-                return null;
-            }
+            return null;
+        }
     }
 }
