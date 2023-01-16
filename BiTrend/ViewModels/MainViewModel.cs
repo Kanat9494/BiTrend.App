@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using BiTrend.Models;
+using System.Runtime.CompilerServices;
 
 namespace BiTrend.ViewModels;
 
@@ -10,6 +11,7 @@ internal class MainViewModel : INotifyPropertyChanged
     {
         IsLoading = true;
         Categories = new ObservableCollection<Category>();
+        PopularProducts = new ObservableCollection<PopularProduct>();
 
         LoadContent();
     }
@@ -23,10 +25,19 @@ internal class MainViewModel : INotifyPropertyChanged
         {
             IsLoading = false;
         });
+
+        Task.Run(async () =>
+        {
+            await InitializeTopProducts();
+        }).GetAwaiter().OnCompleted(() =>
+        {
+            IsLoading = false;
+        });
     }
 
     private ObservableCollection<Category> _categories;
     private bool _isLoading;
+    private ObservableCollection<PopularProduct> _popularProducts;
 
     public ObservableCollection<Category> Categories
     {
@@ -44,6 +55,16 @@ internal class MainViewModel : INotifyPropertyChanged
         set
         {
             _isLoading = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public ObservableCollection<PopularProduct> PopularProducts
+    {
+        get => _popularProducts;
+        set
+        {
+            _popularProducts = value;
             OnPropertyChanged();
         }
     }
@@ -72,11 +93,37 @@ internal class MainViewModel : INotifyPropertyChanged
         //}
     }
 
+    private async Task InitializeTopProducts()
+    {
+        try
+        {
+            var response = await AppServiceProvider.Instance().GetPopularProducts();
+
+            if (response != null)
+            {
+                foreach (var item in response)
+                    PopularProducts.Add(item);
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
     public void OnAppearing()
     {
         Task.Run(async () =>
         {
             await InitializeCategories();
+        }).GetAwaiter().OnCompleted(() =>
+        {
+            IsLoading = false;
+        });
+
+        Task.Run(async () =>
+        {
+            await InitializeTopProducts();
         }).GetAwaiter().OnCompleted(() =>
         {
             IsLoading = false;

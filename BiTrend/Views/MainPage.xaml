@@ -14,6 +14,7 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="250"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -71,7 +72,8 @@
                             BackgroundColor="{StaticResource Gray100}">
                             <Label
                                 Text="{Binding CategoryName}"
-                                Padding="10"/>
+                                Margin="5"
+                                LineBreakMode="WordWrap"/>
                         </Border>
                     </DataTemplate>
                 </dxcv:DXCollectionView.ItemTemplate>
@@ -97,6 +99,39 @@
                 HorizontalOptions="EndAndExpand"
                 Margin="5"
                 />
+        </StackLayout>
+
+        <StackLayout
+            Orientation="Horizontal"
+            Grid.Row="4">
+            <dxcv:DXCollectionView
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding PopularProducts}"
+                IsScrollBarVisible="False">
+                <dxcv:DXCollectionView.ItemTemplate>
+                    <DataTemplate
+                    x:DataType="models:PopularProduct"
+                    >
+                        <Grid
+                            RowDefinitions="50, 20"
+                            Padding="10"
+                            Margin="10"
+                            >
+                            <Image
+                                Grid.Row="0"
+                                Source="{Binding ImagePath}"
+                                Aspect="AspectFill"
+                                />
+
+                            <Label
+                                Grid.Row="1"
+                                Margin="5"
+                                Text="{Binding ProductName}"/>
+                        </Grid>
+                    </DataTemplate>
+                </dxcv:DXCollectionView.ItemTemplate>
+            </dxcv:DXCollectionView>
         </StackLayout>
     </Grid>
 </ContentPage>

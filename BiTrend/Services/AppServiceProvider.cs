@@ -38,4 +38,19 @@ internal class AppServiceProvider
             return null;
         }
     }
+
+    public async Task<List<PopularProduct>> GetPopularProducts()
+    {
+        try
+        {
+            var response = await httpClient.GetStringAsync(httpClient.BaseAddress + "api/Product/GetPopularProducts");
+            
+            var categories = JsonConvert.DeserializeObject<List<PopularProduct>>(response);
+            return categories;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
 }
