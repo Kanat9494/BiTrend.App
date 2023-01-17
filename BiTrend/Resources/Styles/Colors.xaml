@@ -43,5 +43,7 @@
     
     <!--My custom color-->
     <Color x:Key="Green50">#00ff00</Color>
+    <Color x:Key="OrangeRed65">#ff704d</Color>
+    <Color x:Key="White95">#f2f2f2</Color>
 
 </ResourceDictionary>
