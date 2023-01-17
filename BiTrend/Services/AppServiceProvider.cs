@@ -3,7 +3,7 @@
 internal class AppServiceProvider
 {
     private static AppServiceProvider _instance;
-    private const string _serverRootUrl = "http://localhost:5058";
+    private const string _serverRootUrl = "http://192.168.2.33:45455";
     HttpClient httpClient;
 
     private AppServiceProvider() 
